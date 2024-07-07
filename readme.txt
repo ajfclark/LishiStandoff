@@ -9,7 +9,7 @@ BACKGROUND
 
 Much of the backstory of this part is shown in this video here...
 
-   https://www.youtube.com/watch?v=jmQRNhvd4_4
+   https://www.youtube.com/watch?v=Y023QVd8pvY&t=1714s
 
 ... at the 28:30 mark.  This is a tiny adapter to allow greater flexibility of use for Lishi brand 2-in-1 style decoder lockpick tools.  Lishi picks are made in different lengths for different sizes of lock.  However, due to their high cost, I thought it would be a good idea to help people adapt larger sized Lishi tools so that they work effectively in smaller locks, obviating the need to purchase additional expensive hardware.
 
