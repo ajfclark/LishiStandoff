@@ -1,57 +1,74 @@
-height=9.25;
-width=2.7;
-wall=1;
-topwidth=1.5;
-topheight=3;
-topangle=55;
-thickness=4.20;
-fn=8;
-$fn=pow(2,fn);
+/* [Tool Dimensions] */
+// Blade height (at the shoulder)
+bladeHeight=9.25;
+// How far down the keyway the angle should start
+bladeUpperHeight=3;
+// Thickness of the blade at the top
+bladeUpperThickness=1.5;
+// How far up the keyway the angle should start
+bladeLowerHeight=4.5;
+// Thickness of the blade at the bottom
+bladeLowerThickness=2.7;
+// The pin spacing - this will be the distance the standoff pushes the tool out
+pinSpacing=4.20;
+/* [Printing/Rendering Options]*/
+// How much material to use
+collarWidth=1; 
+// The resolution used to calculate curves - as a power of two
+curveResolution=8; // [4:8]
 
-module inside(width, height) {
-square([width, height], center=true);
-}
+$fn=pow(2,curveResolution);
 
-module corner(wall, angle) {
-	rotate(angle)
-	translate([-wall/2,-wall/2,0])
-	intersection(){
-	square([wall,wall]);
-	circle(wall);
+linear_extrude(pinSpacing) {
+	difference() {
+		body(bladeHeight, bladeLowerThickness, collarWidth);
+		inside(bladeHeight, bladeLowerHeight, bladeLowerThickness, bladeUpperHeight, bladeUpperThickness); 
 	}
 }
 
-module outside(width, height, wall) {
-	x=(width+wall)/2;
-	y=(height+wall)/2;
-	translate([0,y,0])
-	square([width, wall], center=true);
-	translate([0,-y,0])
-	square([width, wall], center=true);
-	translate([x,0,0])
-	square([wall, height], center=true);
-	translate([-x,0,0])
-	square([wall, height], center=true);
+/* Functions */
+
+module corners(x, y, radius) {
+	for (i=[0:1]) {
+		for (k=[0:1]) {
+			mirror([i,0,0]) {
+				mirror([0,k,0]) {
+					corner(x, y, radius);
+				}
+			}
+		}
+	}
+}
+
+module corner(x, y, radius) {
+	translate([x - radius/2, y - radius/2, 0]) {
+		intersection() {
+			square([radius, radius]);
+			circle(radius);
+		}
+	}
+}
+
+module body(height, width, collarWidth) {
+	x = (width + collarWidth) / 2;
+	y = (height + collarWidth) / 2;
 	
-	translate([x,y,0]) corner(wall, 0);
-	translate([-x,y,0]) corner(wall, 90);
-	translate([-x,-y,0]) corner(wall, 180);
-	translate([x,-y,0]) corner(wall, 270);
+	square([width, height + 2 * collarWidth], center=true);
+	square([width + 2 * collarWidth, height], center=true);
+	corners(x, y, radius=collarWidth);
 }
 
-module key(width, height, topwidth, topheight, topangle) {
-	w = width-topwidth;
-	translate([topwidth/2,(topheight-height)/2,0]) {
-		square([w,topheight],center=true);
-		translate([0,topheight/2,0])
-			polygon([[-w/2,0],[w/2,0],[w/2,tan(topangle)*w]]);
-	}
+module inside(bladeHeight, bladeLowerHeight, bladeLowerThickness, bladeUpperHeight, bladeUpperThickness) {
+	x = bladeLowerThickness / 2;
+	y = bladeHeight / 2;
+	polygon(
+		[
+			[-x,bladeLowerHeight-y],
+			[-x,-y],
+			[x,-y],
+			[x,y],
+			[x-bladeUpperThickness,y],
+			[x-bladeUpperThickness,y-bladeUpperHeight]
+		]
+	);
 }
-
-difference () {
-	outside(width, height, wall);
-	inside(width, height);
-}
-key(width, height, topwidth, topheight, topangle);
-
-
