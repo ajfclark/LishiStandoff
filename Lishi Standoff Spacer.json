@@ -1,0 +1,36 @@
+{
+    "parameterSets": {
+        "LW5": {
+            "bladeHeight": "9.25",
+            "bladeLowerHeight": "4.5",
+            "bladeLowerThickness": "2.7",
+            "bladeUpperHeight": "3",
+            "bladeUpperThickness": "1.5",
+            "collarWidth": "1",
+            "curveResolution": "8",
+            "pinSpacing": "4.2"
+        },
+        "schlage": {
+            "bladeHeight": "8.505",
+            "bladeLowerHeight": "0",
+            "bladeLowerThickness": "2.405",
+            "bladeUpperHeight": "0",
+            "bladeUpperThickness": "2.405",
+            "collarWidth": "1",
+            "curveResolution": "8",
+            "pinSpacing": "3.6"
+        },
+        "kwikset": {
+            "bladeHeight": "8.505",
+            "bladeLowerHeight": "0",
+            "bladeLowerThickness": "2.405",
+            "bladeUpperHeight": "0",
+            "bladeUpperThickness": "2.405",
+            "collarWidth": "1",
+            "curveResolution": "8",
+            "pinSpacing": "3.6"
+        }
+    },
+    "parameterSets": "",
+    "fileFormatVersion": "1"
+}

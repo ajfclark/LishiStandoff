@@ -1,19 +1,19 @@
 /* [Tool Dimensions] */
 // Blade height (at the shoulder)
-bladeHeight=9.25;
+bladeHeight=9.25; // 0.001
 // How far down the keyway the angle should start
-bladeUpperHeight=3;
+bladeUpperHeight=3.0; // 0.001
 // Thickness of the blade at the top
-bladeUpperThickness=1.5;
+bladeUpperThickness=1.5; // 0.001
 // How far up the keyway the angle should start
-bladeLowerHeight=4.5;
+bladeLowerHeight=4.5; // 0.001
 // Thickness of the blade at the bottom
-bladeLowerThickness=2.7;
+bladeLowerThickness=2.7; // 0.001
 // The pin spacing - this will be the distance the standoff pushes the tool out
-pinSpacing=4.20;
+pinSpacing=4.20; // 0.001
 /* [Printing/Rendering Options]*/
 // How much material to use
-collarWidth=1; 
+collarWidth=1.0; // 0.01
 // The resolution used to calculate curves - as a power of two
 curveResolution=8; // [4:8]
 
